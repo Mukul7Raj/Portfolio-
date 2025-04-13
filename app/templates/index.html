@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional portfolio showcasing quantitative analysis, data science, and machine learning projects">
+    <meta name="keywords" content="quantitative analyst, data scientist, portfolio manager, machine learning engineer">
+    <title>Portfolio | Quantitative & Data Science Projects</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.min.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader">Loading...</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="terminal-nav">
+        <div class="nav-content">
+            <div class="terminal-prompt">
+                <span class="prompt-sign">$</span>
+                <a href="#home" class="nav-link">cd ~/home</a>
+                <a href="#about" class="nav-link">cd ~/about</a>
+                <a href="#projects" class="nav-link">cd ~/projects</a>
+                <a href="#experience" class="nav-link">cd ~/experience</a>
+                <a href="#contact" class="nav-link">cd ~/contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="profile-image">
+                <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Professional Photo">
+            </div>
+            <div class="terminal-text">
+                <span class="prompt-sign">$</span>
+                <span class="typing-text">echo "Welcome to my Portfolio"</span>
+            </div>
+            <p class="terminal-output">Innovative Solutions through Code and Data</p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:your.email@example.com" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section terminal-section">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-title">about.txt</span>
+            </div>
+            <div class="terminal-content">
+                <div class="command-line">
+                    <span class="prompt-sign">$</span>
+                    <span class="command">cat about.txt</span>
+                </div>
+                <div class="output-text">
+                    <p>I am a passionate professional with expertise in quantitative analysis, data science, and machine learning. My work focuses on developing innovative solutions to complex problems in finance and technology.</p>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>> Technical_Skills:</h3>
+                            <ul>
+                                <li>$ Python, R, SQL</li>
+                                <li>$ Machine Learning & Deep Learning</li>
+                                <li>$ Statistical Analysis</li>
+                                <li>$ Data Visualization</li>
+                                <li>$ Algorithmic Trading</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h3>> Soft_Skills:</h3>
+                            <ul>
+                                <li>$ Problem Solving</li>
+                                <li>$ Team Leadership</li>
+                                <li>$ Project Management</li>
+                                <li>$ Communication</li>
+                                <li>$ Strategic Thinking</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section id="projects" class="projects-grid terminal-section">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-title">projects/</span>
+            </div>
+            <div class="terminal-content">
+                <div class="command-line">
+                    <span class="prompt-sign">$</span>
+                    <span class="command">ls -la projects/</span>
+                </div>
+                <div class="projects-container">
+                    {% for project_id, project in projects.items() %}
+                    <div class="project-card" data-category="{{ project.category }}" data-roles="{{ project.roles|join(',') }}" data-project="{{ project_id }}">
+                        <div class="project-image">
+                            <img 
+                                src="{{ url_for('static', filename='images/' + project_id + '.jpg') }}"
+                                alt="{{ project.title }}"
+                                onerror="this.src='{{ url_for('static', filename='images/placeholder.jpg') }}"
+                            >
+                            <div class="project-overlay">
+                                <h3>{{ project.title }}</h3>
+                                <p class="project-description">{{ project.description }}</p>
+                                <div class="project-meta">
+                                    <div class="technologies">
+                                        {% for tech in project.technologies %}
+                                        <span class="tech-tag">> {{ tech }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="skills">
+                                        {% for skill in project.skills %}
+                                        <span class="skill-tag">$ {{ skill }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="project-achievements">
+                                    <h4>> Achievements:</h4>
+                                    <ul>
+                                        {% for achievement in project.achievements %}
+                                        <li>$ {{ achievement }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <a href="{{ project.github_url }}" class="project-link terminal-btn" target="_blank" rel="noopener noreferrer">
+                                    <span class="prompt-sign">$</span> git clone project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section terminal-section">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-title">contact.sh</span>
+            </div>
+            <div class="terminal-content">
+                <div class="command-line">
+                    <span class="prompt-sign">$</span>
+                    <span class="command">./contact.sh</span>
+                </div>
+                <form id="contact-form" method="POST" action="{{ url_for('main.contact') }}" class="terminal-form">
+                    <div class="form-group">
+                        <span class="prompt-sign">$</span>
+                        <input type="text" name="name" placeholder="Enter your name:" required>
+                    </div>
+                    <div class="form-group">
+                        <span class="prompt-sign">$</span>
+                        <input type="email" name="email" placeholder="Enter your email:" required>
+                    </div>
+                    <div class="form-group">
+                        <span class="prompt-sign">$</span>
+                        <select name="role" required aria-label="Select Role">
+                            <option value="">Select role:</option>
+                            {% for role, details in roles.items() %}
+                            <option value="{{ role }}">{{ details.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span class="prompt-sign">$</span>
+                        <textarea name="message" placeholder="Enter your message:" required></textarea>
+                    </div>
+                    <button type="submit" class="terminal-btn">
+                        <span class="prompt-sign">$</span> ./send_message.sh
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html> 
+

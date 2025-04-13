@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ project.title }} -  Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1> Portfolio</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <article class="project-detail">
+            <h2>{{ project.title }}</h2>
+            <div class="project-meta">
+                <span class="category-tag">{{ project.category }}</span>
+                {% if project.github_url %}
+                <a href="{{ project.github_url }}" class="github-link" target="_blank">
+                    <span class="github-icon">📦</span> View on GitHub
+                </a>
+                {% endif %}
+            </div>
+            
+            <div class="project-content">
+                <p class="project-description">{{ project.description }}</p>
+                
+                <h3>Key Features</h3>
+                <ul class="features-list">
+                    {% for feature in project.features %}
+                    <li>{{ feature }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <h3>Technologies Used</h3>
+                <div class="technologies">
+                    {% for tech in project.technologies %}
+                    <span class="tech-tag">{{ tech }}</span>
+                    {% endfor %}
+                </div>
+                
+                <div class="project-actions">
+                    <a href="/" class="back-btn">← Back to Projects</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Portfolio</p>
+    </footer>
+</body>
+</html> 
