@@ -1,57 +1,68 @@
-# Quantitative Portfolio
+# Portfolio Website
 
-A Flask-based web application showcasing quantitative finance projects and analyses.
+A modern, interactive portfolio website built with Flask and featuring a terminal-inspired design.
 
-## Project Structure
+## Features
 
-```
-quant-portfolio/
-│
-├── app/
-│   ├── __init__.py
-│   ├── routes.py
-│   ├── templates/
-│   │   ├── index.html
-│   │   ├── project.html
-│   └── static/
-│       ├── css/
-│       └── images/
-│
-├── projects/
-│   └── stat_arb.ipynb
-├── requirements.txt
-├── config.py
-├── run.py
-└── README.md
-```
+- Modern UI with terminal-inspired design
+- Interactive project showcase
+- Role-based project filtering
+- Responsive design
+- Contact form functionality
+- Dynamic content loading
+- Beautiful animations and transitions
+
+## Tech Stack
+
+- Backend: Flask (Python)
+- Frontend: HTML5, CSS3, JavaScript
+- Database: SQLite (for contact form)
+- Styling: Custom CSS with terminal theme
+- Animations: CSS animations and transitions
 
 ## Setup
 
-1. Create a virtual environment:
+1. Clone the repository:
+```bash
+git clone https://github.com/Mukul7Raj/Portfolio-.git
+cd Portfolio-
+```
+
+2. Create and activate virtual environment:
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-2. Install dependencies:
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Run the application:
+4. Run the application:
 ```bash
 python run.py
 ```
 
-The application will be available at `http://localhost:5000`
+5. Visit `http://localhost:5000` in your browser
 
-## Features
+## Project Structure
 
-- Modern, responsive web interface
-- Project showcase with detailed views
-- Support for Jupyter notebook integration
-- Clean and maintainable code structure
+```
+Portfolio-/
+├── app/
+│   ├── static/
+│   │   ├── css/
+│   │   ├── js/
+│   │   └── images/
+│   ├── templates/
+│   ├── __init__.py
+│   └── routes.py
+├── config.py
+├── requirements.txt
+└── run.py
+```
 
-## License
+## Contact
 
-MIT License 
+Feel free to reach out for any questions or collaborations!
