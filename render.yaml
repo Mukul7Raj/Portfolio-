@@ -2,10 +2,14 @@ services:
   - type: web
     name: portfolio
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn wsgi:app
+    buildCommand: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+    startCommand: gunicorn --bind 0.0.0.0:$PORT wsgi:app
     envVars:
       - key: PYTHON_VERSION
-        value: 3.8.0
+        value: 3.9.0
       - key: FLASK_ENV
-        value: production 
+        value: production
+      - key: PORT
+        value: 10000 
